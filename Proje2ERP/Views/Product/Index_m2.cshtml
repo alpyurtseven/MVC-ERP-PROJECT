@@ -1,0 +1,77 @@
+﻿@model List<D_A_L.Model.Product>
+
+<div class="table-responsive">
+    <a href="/Product/AddProduct" class="btn btn-success" style="float:right">Yeni Ürün</a>
+    <table class="table table-striped table-bordered table-hover" id="dataTables-m2">
+        <thead>
+        <th>Ürün Kodu</th>
+        <th>
+            Ürün Adı
+        </th>
+        <th>Renk</th>
+        <th>Kategori</th>
+        <th>Stok (br)</th>
+        <th>Kritik Stok</th>
+        <th>Alış Fiyatı</th>
+        <th>Satış Fiyatı</th>
+        <th>Toplam MetreKare</th>
+        <th>Mt2</th>
+
+        <th>En-Boy</th>
+        <th></th>
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Category.CategoryName == "Kompozit")
+                {
+                    <tr>
+                        <td>
+                            @item.ProductCode
+                        </td>
+                        <td>
+                            @item.ProductName
+                        </td>
+                        <td>
+                            @item.Color
+                        </td>
+                        <td>
+                            @item.Category.CategoryName
+                        </td>
+                        <td>
+                            @item.Stock
+                        </td>
+                        <td>
+                            @item.CriticalPoint
+                        </td>
+                        <td>
+                            @item.Pprice
+                        </td>
+                        <td>
+                            @item.Sprice
+                        </td>
+                        <td>
+                            @item.Tmt
+                        </td>
+                        <td>
+                            @item.mt2
+                        </td>
+
+                        <td>
+                            @item.Width  - @item.Height
+                        </td>
+                        <td>
+                            <a class="btn btn-info" style="margin-right:-20px;"><i class="fas fa-search-plus"></i></a>
+                        </td>
+                        <td>
+                            <a href="/Product/Get/@item.ProductId" class="btn btn-warning" style="margin-right:-10px;"><i class="fas fa-user-edit"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>

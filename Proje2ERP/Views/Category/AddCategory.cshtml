@@ -1,0 +1,64 @@
+﻿@model D_A_L.Model.Category
+
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="#">Kategoriler</a></li>
+            <li class="active">Kategori ekle</li>
+        </ol>
+    </div>
+    <link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Web/assets/js/bootstrap.min.js"></script>
+    <script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+
+    @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.CategoryId)
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-action">
+                    Düzenle
+                </div>
+                <div class="card-content">
+
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                @Html.TextBoxFor(x => x.CategoryName, new { })
+                                <label class="active" for="icon_prefix">Kategori Adı</label>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <button class="btn btn-warning" style="float:right">Kaydet</button>
+
+
+
+                    <br>
+                    <label>Pasif müşteriler listelenmez, yeniden aktifleştireblimek için veritabanı yöneticisi ile iletişime geçilmelidir.</label>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    }
+
+</div>
+
+
+

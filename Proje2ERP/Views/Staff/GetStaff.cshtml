@@ -1,0 +1,122 @@
+﻿@model D_A_L.Model.Staff
+
+@{
+    ViewBag.Title = "GetStaff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="#">Personeller</a></li>
+            <li class="active">Personel Düzenle</li>
+        </ol>
+    </div>
+    <link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Web/assets/js/bootstrap.min.js"></script>
+    <script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+
+    @using (Html.BeginForm("UpdateStaff", "Staff", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.StaffId)
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-action">
+                    Düzenle
+                </div>
+                <div class="card-content">
+
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                @Html.TextBoxFor(x => x.StaffName, new { })
+                                <label class="active" for="icon_prefix">Adı</label>
+
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                @Html.TextBoxFor(x => x.StaffSurname, new { })
+                                <label class="active" for="icon_prefix">Soyadı</label>
+
+                            </div>
+                        </div>
+                    </div>
+                            <div class="input-field col s6">
+                                <p>
+                                    @Html.EditorFor(x => x.Status)
+                                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="@Model.Status" />
+                                    <label for="filled-in-box">Müşteri Durumu</label>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-warning" style="float:right">Kaydet</button>
+                    <br>
+                    <label>Aktif olamayan personeler listelenmez, yeniden aktifleştireblimek için veritabanı yöneticisi ile iletişime geçilmelidir.</label>
+                </div>
+       
+    }
+
+</div>
+<link href="~/Web/assets/attention.js-master/dist/attention.css" rel="stylesheet" />
+<script src="~/Web/assets/attention.js-master/dist/attention.js"></script>
+<script>
+    $(function () {
+        $('[id="filled-in-box"]').change(function () {
+
+            if ($(this).is(':checked')) {
+                $("#Status").val(true);
+                var values = [];
+                $("input[name='Status']").each(function () {
+                    values.push($(this));
+                });
+                values[1].val(true);
+
+            }
+            else {
+                confirmDelete();
+
+            };
+        });
+    });
+</script>
+<script>
+    function confirmDelete() {
+
+            new Attention.Confirm({
+                title: 'Uyarı',
+                content: 'Müşteri durumunu pasifleştirmek istediğinize emin misiniz?',
+                onCancel: function (component) {
+
+                    $("#filled-in-box").prop('checked', true);
+                    $("#Status").val(true);
+                    var values = [];
+                    $("input[name='Status']").each(function () {
+                        values.push($(this));
+                    });
+                    values[1].val(true);
+
+
+                },
+                onConfirm: function (component) {
+                    $("#filled-in-box").prop('checked', false);
+                    $("#Status").val(false);
+                    var values = [];
+                    $("input[name='Status']").each(function () {
+                        values.push($(this));
+                    });
+                    values[1].val(false);
+
+                }
+            });
+
+
+    }
+</script>

@@ -1,0 +1,131 @@
+﻿@model List<D_A_L.Model.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>
+            <li class="active">Ürünler</li>
+        </ol>
+    </div>
+    <link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Web/assets/js/bootstrap.min.js"></script>
+    <script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+
+    <link href="~/Web/assets/css/Tab.css" rel="stylesheet" />
+    <div id="page-inner">
+        <div class="card">
+            <div class="card-action">
+
+                <div class="row">
+                    <div class="col s12">
+                        <ul id="tab" class="tabs">
+                            <li class="tab col s1 disabled"><a> </a></li>
+                            <li class="tab col s2"><a style="color:white" class="active" href="#test0">Profil</a></li>
+                            <li class="tab col s2"><a style="color:#f44336" href="#test1">Aksesuar</a></li>
+                            <li class="tab col s2"><a style="color:#f44336" href="#test2">Fitil</a></li>
+                            <li class="tab col s2"><a style="color:#f44336" href="#test3">Kompozit</a></li>
+                            <li class="tab col s2"><a style="color:#f44336" href="#test4">PVC</a></li>
+                            <li class="tab col s1 disabled"><a> </a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card-content">
+
+                <div id="test0" class="table-responsive">@Html.Partial("Index_kg")</div>
+                <div id="test1" class="col s12">@Html.Partial("Index_n")</div>
+                <div id="test2" class="col s12">@Html.Partial("Index_m")</div>
+                <div id="test3" class="col s12">@Html.Partial("Index_m2")</div>
+                <div id="test4" class="col s12">@Html.Partial("Index_n1")</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(".tab").click(function () {
+        $(this).children().css("color", "white");
+        $(this).siblings().children().css("color", "#f44336");
+    });
+    $(".tab").mouseover(function () {
+        if ($(this).children().hasClass('active')) { }
+        else {
+            $(this).children().css("color", "white");
+        }
+    });
+    $(".tab").mouseout(function () {
+        if ($(this).children().hasClass('active')) { }
+        else {
+
+            $(this).children().css("color", "#f44336");
+        }
+
+    });
+</script>
+<style>
+    .tabs .tab a {
+        color: black;
+    }
+
+        .tabs .tab a:hover {
+            background-color: #f44336;
+            color: #000;
+        }
+
+
+        .tabs .tab a.active {
+            background-color: #f44336;
+            color: white;
+        }
+
+
+    .tabs .indicator {
+        background-color: #e0e8f5;
+    }
+</style>
+<script src="https://kit.fontawesome.com/bf27bd6f1e.js" crossorigin="anonymous"></script>
+<script src="~/Web/assets/js/jquery-1.10.2.js"></script>
+<script src="~/Web/assets/js/bootstrap.min.js"></script>
+<script src="~/Web/assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="~/Web/assets/js/dataTables/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#dataTables-n').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+            }
+        });
+
+        $('#dataTables-n1').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+            }
+        });
+        $('#dataTables-kg').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+            }
+        });
+        $('#dataTables-m').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+            }
+        });
+        $('#dataTables-m2').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+            }
+        });
+    });
+</script>

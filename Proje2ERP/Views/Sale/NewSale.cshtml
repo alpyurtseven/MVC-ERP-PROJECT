@@ -1,0 +1,219 @@
+﻿@model D_A_L.Model.InvoiceP
+@{
+    ViewBag.Title = "NewSale";
+
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+<script src="~/Web/assets/js/bootstrap.min.js"></script>
+<script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+<script src="~/Web/assets/js/chosen.jquery.min.js"></script>
+<script src="~/Web/assets/js/chosen.proto.min.js"></script>
+<link href="~/Web/assets/js/component-chosen.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+            Satış Yap
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="#">Satışlar</a></li>
+            <li class="active">Yeni Satış</li>
+        </ol>
+
+    </div>
+    <div id="page-inner">
+        <div class="card">
+
+            <div class="card-action">
+                Satış Formu
+                <button style="float:right" id="newProduct" class="btn btn-danger ">Ürün Ekle</button>
+            </div>
+            @using (Html.BeginForm("AddP", "InvoiceP"))
+            {
+                <div class="card-content">
+
+
+
+                    <div id="productForm" class="col s12">
+                        <div id="productInput" class="row">
+                            <div class="input-field col s12">
+                                <div class="col s4" style="margin-top:25px;padding-left:40px;">
+                                    @Html.DropDownListFor(x => x.ProductId, (List<SelectListItem>)ViewBag.catval, new { @id = "product1" })
+                                </div>
+                                <div class="col s2 quantity" tyle="margin-top:30px;padding-left:40px;">
+                                    @Html.TextBoxFor(x => x.Quantity, new { @placeholder = "Adet", @type = "number" })
+                                </div>
+                                <div class="col s2 unitprice" tyle="margin-top:30px;padding-left:40px;">
+                                    @Html.TextBoxFor(x => x.UnitPrice, new { @placeholder = "Fiyat", @type = "number" })
+                                </div>
+                                <div class="col s2 totalprice" tyle="margin-top:30px;padding-left:40px;">
+                                    @Html.TextBoxFor(x => x.Price, new { @placeholder = " Toplam Fiyat", @readonly = "true" })
+                                </div>
+                               
+                           
+                                
+                                @Html.HiddenFor(x => x.InvoiceId, new { Value = TempData["a"]})
+                            
+                                <div class="col s2" tyle="margin-top:30px;padding-left:40px;">
+                                    <button class=" deleteProduct btn btn-danger red disabled">Sil</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col s2" style="margin-top:30px;padding-left:45px;">
+                        <button class=" btn btn-danger green  ">Satışı Tamamla</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var sayac = 2;
+    $(document).ready(function () {
+        $('select').select2({ width: "100%" });
+  
+        
+    });
+ 
+    $('select').change(function () {
+        
+
+    })
+
+    $("#newProduct").click(function () {
+        $('select').select2("destroy");
+        var input = $("#productInput").clone();
+        input.children("div").children("div").children(".deleteProduct").removeClass("disabled");
+
+        input.children("div").children("div").children("[name='ProductId']").attr("id", "product" + sayac);
+        input.children("div").children("div").children("[name='ProductId']").attr("data-select2-id", "product" + sayac);
+        input.children("div").children("div").children("#Quantity").val(null);
+        input.children("div").children("div").children("#Price").val(null);
+        input.children("div").children("div").children("#UnitPrice").val(null);
+        input.appendTo("#productForm");
+
+        $('select').select2({ width: "100%" });
+        sayac++;
+    });
+   
+    $(document).on("click", ".deleteProduct", function () {
+        console.log($(this).parent().parent().parent());
+        $(this).parent().parent().parent().remove();
+
+    });
+
+    $(document).on("change", "#UnitPrice", function () {
+
+        var quantity = $(this).closest("div").siblings(".quantity").children("#Quantity").val();
+        var totalprice = $(this).closest("div").siblings(".totalprice").children("#Price").val();
+        totalprice = quantity * $(this).val();
+        $(this).closest("div").siblings(".totalprice").children("#Price").val(totalprice);
+ 
+    });
+
+    $(document).on("change", "#Quantity", function () {
+        var quantity = $(this).closest("div").siblings(".unitprice").children("#UnitPrice").val();
+        var totalprice = $(this).closest("div").siblings(".totalprice").children("#Price").val();
+        totalprice = quantity * $(this).val();
+        $(this).closest("div").siblings(".totalprice").children("#Price").val(totalprice);
+      
+    });
+
+
+
+
+</script>
+
+<style>
+    .select2 .selection .select2-selection--single, .select2-container--default .select2-search--dropdown .select2-search__field {
+        border-width: 0 0 1px 0 !important;
+        border-radius: 0 !important;
+        height: 2.05rem;
+    }
+
+    .select2-container--default .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--multiple {
+        border-width: 0 0 1px 0 !important;
+        border-radius: 0 !important;
+    }
+
+    .select2-results__option {
+        color: #26a69a;
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: #eee !important;
+        color: #26a69a !important;
+    }
+
+    .select2-container--default .select2-results__option[aria-selected=true] {
+        background-color: #e1e1e1 !important;
+    }
+
+    .select2-dropdown {
+        border: none !important;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    .select2-container--default .select2-results__option[role=group] .select2-results__group {
+        background-color: #333333;
+        color: #fff;
+    }
+
+    .select2-container .select2-search--inline .select2-search__field {
+        margin-top: 0 !important;
+    }
+
+        .select2-container .select2-search--inline .select2-search__field:focus {
+            border-bottom: none !important;
+            box-shadow: none !important;
+        }
+
+    .select2-container .select2-selection--multiple {
+        min-height: 2.05rem !important;
+    }
+
+    .select2-container--default.select2-container--disabled .select2-selection--single {
+        background-color: #ddd !important;
+        color: rgba(0,0,0,0.26);
+        border-bottom: 1px dotted rgba(0,0,0,0.26);
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=url],
+    input[type=time],
+    input[type=date],
+    input[type=datetime-local],
+    input[type=tel],
+    input[type=number],
+    input[type=search],
+    textarea.materialize-textarea {
+        &.valid + label::after, &.invalid + label::after, &:focus.valid + label::after, &:focus.invalid + label::after
+
+    {
+        white-space: pre;
+    }
+
+    &.empty {
+        &:not(:focus).valid + label::after, &:not(:focus).invalid + label::after
+
+    {
+        top: 2.8rem;
+    }
+
+    }
+    }
+</style>
+

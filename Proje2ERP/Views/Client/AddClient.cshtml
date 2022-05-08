@@ -1,0 +1,131 @@
+﻿@model D_A_L.Model.Client
+@{
+    ViewBag.Title = "AddClient";
+}
+
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="#">Müşteriler</a></li>
+            <li class="active">Müşteri ekle</li>
+        </ol>
+    </div>
+    <link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Web/assets/js/bootstrap.min.js"></script>
+    <script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+
+    @using (Html.BeginForm("AddClient", "Client", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.ClientId)
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-action">
+                    Düzenle
+                </div>
+                <div class="card-content">
+
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                @Html.TextBoxFor(x => x.ClientName, new { })
+                                <label class="active" for="icon_prefix">Adı</label>
+
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                @Html.TextBoxFor(x => x.ClientSurname, new { })
+                                <label class="active" for="icon_prefix">Soyadı</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">pin_drop</i>
+                                @Html.TextAreaFor(x => x.ClientAddress, new { @id = "textarea1", @class = "materialize-textarea" })
+                                <label class="active" for="textarea1">Adres</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">phone</i>
+                                @Html.TextBoxFor(x => x.PhoneNumber, new { @type = "number" })
+                                <label class="active" for="icon_telephone">Telefon Numarası </label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">phone</i>
+                                @Html.TextBoxFor(x => x.PhoneNumber1, new { @type = "number" })
+                                <label class="active" for="icon_telephone">Telefon Numarası 2</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">phone</i>
+                                @Html.TextBoxFor(x => x.PhoneNumber2, new { @type = "number" })
+                                <label class="active" for="icon_telephone">Fax Numarası</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">email</i>
+                                @Html.TextBoxFor(x => x.ClientMail, new { @type = "email" })
+                                <label class="active" for="email" data-error="wrong" data-success="right">Email</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <p>
+
+                                    @Html.EditorFor(x => x.Status)
+                                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="@Model.Status" />
+
+                                    <label for="filled-in-box">Müşteri Durumu</label>
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-warning" style="float:right">Kaydet</button>
+
+
+
+                    <br>
+                    <label>Pasif müşteriler listelenmez, yeniden aktifleştireblimek için veritabanı yöneticisi ile iletişime geçilmelidir.</label>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    }
+
+</div>
+
+<script>
+    $(function () {
+        $('[id="filled-in-box"]').change(function () {
+            var values = [];
+            $("input[name='Status']").each(function () {
+                values.push($(this));
+            });
+           
+
+            if ($(this).is(':checked')) {
+                $("#Status").val(true);
+                values[1].val(true);
+            }
+            else {
+                values[1].val(false);
+            };
+
+           
+        });
+    });
+</script>

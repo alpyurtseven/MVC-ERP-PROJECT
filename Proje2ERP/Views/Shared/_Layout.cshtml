@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alperen Yurtseven Proje 2 ERP</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="~/Web/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="~/Web/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Web/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Web/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Web/assets/js/Lightweight-Chart/cssCharts.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>Proje2</strong></a>
+
+                <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+            </div>
+
+          
+        </nav>
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu waves-effect waves-dark" href="~/Home/Index"><i class="fa fa-dashboard"></i> Anasayfa</a>
+                    </li>
+                    <li>
+                        <a href="~/Client/Index" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Müşteriler</a>
+                    </li>
+                    <li>
+                        <a href="~/Sale/Index" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Satışlar</a>
+                    </li>
+                    <li>
+                        <a href="~/Product/Index" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i>Ürünler</a>
+                    </li>
+
+                    <li>
+                        <a href="~/Category/Index" class="waves-effect waves-dark"><i class="fa fa-table"></i> Kategoriler</a>
+                    </li>
+
+                    @if (Session["Authority"].ToString() == "1")
+                    {
+                        <li>
+                            <a href="~/Staff/Index" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Personeller </a>
+                        </li>
+                    }
+                    @if (Session["Username"].ToString() != null)
+                    {
+                        <li>
+                            <a href="~/Auth/LogOut" class="waves-effect waves-dark"><i class="fa fa-sign-out"></i>@Session["Username"]  -Çıkış Yap </a>
+                        </li>
+                    }
+
+
+
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+  
+
+             
+
+                        @RenderBody()
+                 
+                <!-- /. ROW  -->
+            
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+
+
+    <!-- Bootstrap Js -->
+    <script src="~/Web/assets/js/bootstrap.min.js"></script>
+
+    <script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="~/Web/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="~/Web/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="~/Web/assets/js/morris/morris.js"></script>
+
+
+    <script src="~/Web/assets/js/easypiechart.js"></script>
+    <script src="~/Web/assets/js/easypiechart-data.js"></script>
+
+    <script src="~/Web/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+    <!-- Custom Js -->
+    <script src="~/Web/assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>

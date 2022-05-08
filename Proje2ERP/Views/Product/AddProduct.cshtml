@@ -1,0 +1,393 @@
+﻿@model D_A_L.Model.Product
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="#">Ürünler</a></li>
+            <li class="active">Ürün Ekle</li>
+        </ol>
+    </div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Web/assets/js/bootstrap.min.js"></script>
+    <script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+    <script src="~/Web/assets/js/chosen.jquery.min.js"></script>
+    <script src="~/Web/assets/js/chosen.proto.min.js"></script>
+    <link href="~/Web/assets/js/component-chosen.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.ProductId)
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-action">
+                    Düzenle
+                </div>
+                <div class="card-content">
+
+                    <div class="row ">
+                        <div class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Ürün Kodu:</p>
+                            </div>
+                            <div class="col-12 ">
+                                @Html.TextBoxFor(x => x.ProductCode, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Ürün Adı:</p>
+                            </div>
+                            <div class="col-12 ">
+                                @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Stok Miktarı:</p>
+                            </div>
+                            <div class="col-12 ">
+                                @Html.TextBoxFor(x => x.Stock, new { @class = "form-control" })
+                            </div>
+
+                            <div class="row col-12">
+                                <div class="col-12 font-weight-bold mt-2">
+                                    <p>Kritik Stok:</p>
+                                </div>
+                                <div class="col-12 ">
+                                    @Html.TextBoxFor(x => x.CriticalPoint, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row col-12">
+                                <div class="col-12 font-weight-bold mt-2">
+                                    <p>Alış Fiyatı:</p>
+                                </div>
+                                <div class="col-12 ">
+                                    @Html.TextBoxFor(x => x.Pprice, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row col-12">
+                                <div class="col-12 font-weight-bold mt-2">
+                                    <p>Satış Fiyatı:</p>
+                                </div>
+                                <div class="col-12 ">
+                                    @Html.TextBoxFor(x => x.Sprice, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row col-12 mt-5">
+                                <div class="col-12 font-weight-bold mt-5 ">
+                                    <p>Kategori:</p>
+                                </div>
+                                <div class="col-12 mt-5 ">
+                                    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.catval, new { @class = "form-control chosen-container", @id = "dropd" })
+                                </div>
+                            </div>
+
+                            <div id="metre" class="row col-12">
+                                <div class="col-12 font-weight-bold mt-2">
+                                    <p>Boy metresi:</p>
+                                </div>
+                                <div class="col-12 ">
+                                    @Html.TextBoxFor(x => x.Mt, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div id="color" class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Ürün Rengi:</p>
+                            </div>
+                            <div class="col-12">
+
+                                @Html.TextBoxFor(x => x.Color, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div id="mkg" class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>m/kg:</p>
+                            </div>
+                            <div class="col-12 ">
+                                @Html.TextBoxFor(x => x.Mkg, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div id="width" class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Genişlik</p>
+                            </div>
+                            <div class="col-12 ">
+                                @Html.TextBoxFor(x => x.Width, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div id="height" class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Yükseklik:</p>
+                            </div>
+                            <div class="col-12 ">
+                                @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12 font-weight-bold mt-2">
+                                <p>Ürün Görseli:</p>
+                            </div>
+                            <div class="col-12">
+
+                                @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="input-field col s12">
+                            <p>
+
+                                @Html.EditorFor(x => x.Status)
+                                <input type="checkbox" class="filled-in" id="filled-in-box" checked="@Model.Status" />
+
+                                <label for="filled-in-box">Ürün Durumu</label>
+
+                            </p>
+
+                        </div>
+
+                        <button class="btn btn-info col-12 " style="float:right">Kaydet</button>
+                    </div>
+
+
+                    <br>
+                    <label>Aktif olmayan ürünler listelenmez, yeniden aktifleştireblimek için veritabanı yöneticisi ile iletişime geçilmelidir.</label>
+                </div>
+            </div>
+        </div>
+        
+    }
+
+</div>
+<link href="~/Web/assets/attention.js-master/dist/attention.css" rel="stylesheet" />
+<script src="~/Web/assets/attention.js-master/dist/attention.js"></script>
+<script>
+
+    function hideOnLoad() {
+        $('#height').hide();
+        $('#width').hide();
+ 
+
+    }
+    $(function () {
+        $('[id="filled-in-box"]').change(function () {
+            var values = [];
+            $("input[name='Status']").each(function () {
+                values.push($(this));
+            });
+
+
+            if ($(this).is(':checked')) {
+                $("#Status").val(true);
+                values[1].val(true);
+            }
+            else {
+                values[1].val(false);
+            };
+
+
+        });
+    });
+
+    $(document).ready(function () {
+        hideOnLoad(); // add this line
+        $('#dropd').change(function () {
+            
+           
+
+            var value = $(this).val();
+            console.log(value)
+            if (value == '4') {
+                $('#height').hide();
+                $('#width').hide();
+                $('#metre').hide();
+                $('#mkg').hide();
+                $('#color').show();
+            } else if (value == '1') {
+                $('#height').hide();
+                $('#width').hide();
+                $('#metre').show();
+                $('#mkg').show();
+                $('#color').show();
+            }
+            else if (value == '5') {
+                $('#height').hide();
+                $('#width').hide();
+                $('#metre').hide();
+                $('#mkg').hide();
+                $('#color').hide();
+            }
+            else if (value == '6') {
+                $('#height').show();
+                $('#width').show();
+                $('#metre').hide();
+                $('#mkg').hide();
+                $('#color').show();
+            } else if (value == '7') {
+                $('#height').hide();
+                $('#width').hide();
+                $('#metre').show();
+                $('#mkg').hide();
+                $('#color').show();
+            }
+
+            else {
+                hideOnLoad();
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('select').select2({ width: "100%" });
+
+    });
+
+
+
+    $(function () {
+        $('[id="filled-in-box"]').change(function () {
+
+            if ($(this).is(':checked')) {
+                $("#Status").val(true);
+                var values = [];
+                $("input[name='Status']").each(function () {
+                    values.push($(this));
+                });
+                values[1].val(true);
+
+            }
+            else {
+                confirmDelete();
+
+            };
+        });
+    });
+</script>
+<script>
+    function confirmDelete() {
+
+            new Attention.Confirm({
+                title: 'Uyarı',
+                content: 'Müşteri durumunu pasifleştirmek istediğinize emin misiniz?',
+                onCancel: function (component) {
+
+                    $("#filled-in-box").prop('checked', true);
+                    $("#Status").val(true);
+                    var values = [];
+                    $("input[name='Status']").each(function () {
+                        values.push($(this));
+                    });
+                    values[1].val(true);
+
+
+                },
+                onConfirm: function (component) {
+                    $("#filled-in-box").prop('checked', false);
+                    $("#Status").val(false);
+                    var values = [];
+                    $("input[name='Status']").each(function () {
+                        values.push($(this));
+                    });
+                    values[1].val(false);
+
+                }
+            });
+
+
+    }
+</script>
+<style>
+    .select2 .selection .select2-selection--single, .select2-container--default .select2-search--dropdown .select2-search__field {
+        border-width: 0 0 1px 0 !important;
+        border-radius: 0 !important;
+        height: 2.05rem;
+    }
+
+    .select2-container--default .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--multiple {
+        border-width: 0 0 1px 0 !important;
+        border-radius: 0 !important;
+    }
+
+    .select2-results__option {
+        color: #26a69a;
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: #eee !important;
+        color: #26a69a !important;
+    }
+
+    .select2-container--default .select2-results__option[aria-selected=true] {
+        background-color: #e1e1e1 !important;
+    }
+
+    .select2-dropdown {
+        border: none !important;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    .select2-container--default .select2-results__option[role=group] .select2-results__group {
+        background-color: #333333;
+        color: #fff;
+    }
+
+    .select2-container .select2-search--inline .select2-search__field {
+        margin-top: 0 !important;
+    }
+
+        .select2-container .select2-search--inline .select2-search__field:focus {
+            border-bottom: none !important;
+            box-shadow: none !important;
+        }
+
+    .select2-container .select2-selection--multiple {
+        min-height: 2.05rem !important;
+    }
+
+    .select2-container--default.select2-container--disabled .select2-selection--single {
+        background-color: #ddd !important;
+        color: rgba(0,0,0,0.26);
+        border-bottom: 1px dotted rgba(0,0,0,0.26);
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=url],
+    input[type=time],
+    input[type=date],
+    input[type=datetime-local],
+    input[type=tel],
+    input[type=number],
+    input[type=search],
+    textarea.materialize-textarea {
+        &.valid + label::after, &.invalid + label::after, &:focus.valid + label::after, &:focus.invalid + label::after
+
+    {
+        white-space: pre;
+    }
+
+    &.empty {
+        &:not(:focus).valid + label::after, &:not(:focus).invalid + label::after
+
+    {
+        top: 2.8rem;
+    }
+
+    }
+    }
+</style>
+

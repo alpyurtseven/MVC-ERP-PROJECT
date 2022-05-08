@@ -1,0 +1,177 @@
+﻿@model D_A_L.Model.Invoice
+
+@{
+    ViewBag.Title = "AddInvoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/Web/assets/materialize/css/materialize.min.css" media="screen,projection" />
+<script src="~/Web/assets/js/bootstrap.min.js"></script>
+<script src="~/Web/assets/materialize/js/materialize.min.js"></script>
+<script src="~/Web/assets/js/chosen.jquery.min.js"></script>
+<script src="~/Web/assets/js/chosen.proto.min.js"></script>
+<link href="~/Web/assets/js/component-chosen.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+@using (Html.BeginForm("AddInvoice", "Sale", FormMethod.Post))
+{
+
+    <div id="page-wrapper">
+
+        <div class="header">
+            <h1 class="page-header">
+                FATURA
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">Anasayfa</a></li>
+         
+                <li class="active">Fiş Oluştur</li>
+            </ol>
+
+        </div>
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-action">
+                    Yeni Fatura Oluştur
+                </div>
+                <div class="card-content">
+                    @Html.HiddenFor(x => x.InvoiceId)
+                    <div class="row">
+                        <div class="col-10">
+
+                            <div class="col-12">
+                                <label class="active" for="icon_prefix">Müşteri</label>
+                                @Html.DropDownListFor(x => x.ClientId, (List<SelectListItem>)ViewBag.val2, new { @class = "form-control" })
+                                
+                            </div>
+                            <div class="col-12">
+                                <br />
+                            </div>
+                            <div class="col-12">
+                                @Html.TextBoxFor(x => x.Nu, new { @class = "form-control", @placeholder = "Fiş Numarası" })
+                            </div>
+                            <div class="col-12">
+                                <br />
+                            </div>
+                            <div class="col-12">
+                                @Html.TextAreaFor(x => x.Description, new { @class = "materialize-textarea", @placeholder = "Notlar" })
+                            </div>
+                            <div>
+                                <input type="hidden" id="hidText" name="hidText" />
+                            </div>
+
+                            <div class="col-12">
+                                <br />
+                                <button class="btn btn-primary">Fiş ekle</button>
+                            </div>
+                        </div>
+
+                    </div>
+                  
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+    <script>
+
+        $(document).ready(function () {
+            $('select').select2({ width: "100%" });
+        
+
+        });
+        $('select').change(function () {
+            alert("a");
+                    
+
+        })
+
+    </script>
+    <style>
+        .select2 .selection .select2-selection--single, .select2-container--default .select2-search--dropdown .select2-search__field {
+            border-width: 0 0 1px 0 !important;
+            border-radius: 0 !important;
+            height: 2.05rem;
+        }
+
+        .select2-container--default .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--multiple {
+            border-width: 0 0 1px 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .select2-results__option {
+            color: #26a69a;
+            padding: 8px 16px;
+            font-size: 16px;
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #eee !important;
+            color: #26a69a !important;
+        }
+
+        .select2-container--default .select2-results__option[aria-selected=true] {
+            background-color: #e1e1e1 !important;
+        }
+
+        .select2-dropdown {
+            border: none !important;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        }
+
+        .select2-container--default .select2-results__option[role=group] .select2-results__group {
+            background-color: #333333;
+            color: #fff;
+        }
+
+        .select2-container .select2-search--inline .select2-search__field {
+            margin-top: 0 !important;
+        }
+
+            .select2-container .select2-search--inline .select2-search__field:focus {
+                border-bottom: none !important;
+                box-shadow: none !important;
+            }
+
+        .select2-container .select2-selection--multiple {
+            min-height: 2.05rem !important;
+        }
+
+        .select2-container--default.select2-container--disabled .select2-selection--single {
+            background-color: #ddd !important;
+            color: rgba(0,0,0,0.26);
+            border-bottom: 1px dotted rgba(0,0,0,0.26);
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=email],
+        input[type=url],
+        input[type=time],
+        input[type=date],
+        input[type=datetime-local],
+        input[type=tel],
+        input[type=number],
+        input[type=search],
+        textarea.materialize-textarea {
+            &.valid + label::after, &.invalid + label::after, &:focus.valid + label::after, &:focus.invalid + label::after
+
+        {
+            white-space: pre;
+        }
+
+        &.empty {
+            &:not(:focus).valid + label::after, &:not(:focus).invalid + label::after
+
+        {
+            top: 2.8rem;
+        }
+
+        }
+        }
+    </style>
+
+
+
